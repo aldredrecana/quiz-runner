@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Quiz Runner</title>
+<style>
+  html,body{margin:0;height:100%;background:#1b1b2f;overflow:hidden;touch-action:none}
+  canvas{display:block;margin:0 auto}
+</style>
+</head>
+<body>
+<canvas id="c" width="480" height="800"></canvas>
+<script>
+const c = document.getElementById('c'), x = c.getContext('2d');
+const W = 480, H = 800, HOR = 250, GY = 700, SP = W * 0.33;
+function fit() {
+  const s = Math.min(innerWidth / W, innerHeight / H);
+  c.style.width = W * s + 'px'; c.style.height = H * s + 'px';
+  c.style.marginTop = (innerHeight - H * s) / 2 + 'px';
+}
+addEventListener('resize', fit); fit();
+
+// ---------- QUESTIONS (edit me!) ----------
+// [category, level(1-3), question, correct, wrong1, wrong2]
+// level 1 = Grades 1-2, level 2 = Grades 3-4, level 3 = Grades 5-6
+let BANK = [
+  ["filipino",1,"Filipino for 'dog'?","aso","pusa","ibon"],
+  ["filipino",1,"Filipino for 'red'?","pula","asul","dilaw"],
+  ["filipino",1,"'Tubig' in English?","water","fire","wind"],
+  ["filipino",1,"Filipino for 'house'?","bahay","kotse","puno"],
+  ["filipino",1,"Filipino for 'cat'?","pusa","aso","ibon"],
+  ["filipino",1,"Filipino for 'bird'?","ibon","isda","baka"],
+  ["filipino",1,"Filipino for 'fish'?","isda","pusa","kabayo"],
+  ["filipino",1,"Filipino for 'milk'?","gatas","tubig","kape"],
+  ["filipino",1,"Filipino for 'egg'?","itlog","gatas","tinapay"],
+  ["filipino",1,"Filipino for 'bread'?","tinapay","itlog","prutas"],
+  ["filipino",1,"Filipino for 'book'?","aklat","lapis","upuan"],
+  ["filipino",1,"Filipino for 'chair'?","upuan","mesa","pinto"],
+  ["filipino",1,"Filipino for 'door'?","pinto","bintana","bubong"],
+  ["filipino",1,"Filipino for 'sun'?","araw","buwan","bituin"],
+  ["filipino",1,"Filipino for 'moon'?","buwan","araw","ulap"],
+  ["filipino",1,"Filipino for 'star'?","bituin","bulaklak","ulap"],
+  ["filipino",1,"Filipino for 'blue'?","asul","pula","berde"],
+  ["filipino",1,"Filipino for 'one'?","isa","dalawa","tatlo"],
+  ["filipino",1,"Filipino for 'mother'?","nanay","tatay","lola"],
+  ["filipino",1,"Filipino for 'father'?","tatay","nanay","lolo"],
+  ["filipino",2,"Filipino for 'friend'?","kaibigan","kapatid","kapitbahay"],
+  ["filipino",2,"'Salamat' means?","thank you","goodbye","sorry"],
+  ["filipino",2,"Opposite of 'malaki'?","maliit","mataba","mabigat"],
+  ["filipino",2,"Filipino for 'school'?","paaralan","simbahan","palengke"],
+  ["filipino",2,"'Magandang umaga' means?","good morning","good night","good afternoon"],
+  ["filipino",2,"'Magandang gabi' means?","good evening","good morning","thank you"],
+  ["filipino",2,"'Paalam' means?","goodbye","hello","please"],
+  ["filipino",2,"'Pakiusap' means?","please","thank you","sorry"],
+  ["filipino",2,"'Pasensya na' means?","sorry","thank you","goodbye"],
+  ["filipino",2,"'Kain' means?","eat","sleep","run"],
+  ["filipino",2,"'Tulog' means?","sleep","eat","walk"],
+  ["filipino",2,"'Takbo' means?","run","jump","sit"],
+  ["filipino",2,"Opposite of 'mataas'?","mababa","malaki","mahaba"],
+  ["filipino",2,"Opposite of 'mabilis'?","mabagal","malakas","mataba"],
+  ["filipino",2,"Filipino for 'teacher'?","guro","doktor","pulis"],
+  ["filipino",2,"Filipino for 'market'?","palengke","simbahan","ospital"],
+  ["filipino",2,"Filipino for 'rain'?","ulan","hangin","araw"],
+  ["filipino",2,"Filipino for 'flower'?","bulaklak","dahon","puno"],
+  ["filipino",2,"'Walo' is what number?","8","6","9"],
+  ["filipino",2,"'Lima' is what number?","5","3","7"],
+  ["filipino",3,"'Bayanihan' means?","helping each other","dancing","fishing"],
+  ["filipino",3,"Filipino for 'rainbow'?","bahaghari","bulalakaw","buwan"],
+  ["filipino",3,"Opposite of 'masipag'?","tamad","matalino","mabait"],
+  ["filipino",3,"National hero of the PH?","Jose Rizal","Ferdinand Magellan","Juan Luna"],
+  ["filipino",3,"'Bahay kubo' is a?","nipa hut","castle","jeepney"],
+  ["filipino",3,"'Kapitbahay' means?","neighbor","relative","stranger"],
+  ["filipino",3,"'Pasalubong' is?","a gift from a trip","a rice dish","a dance"],
+  ["filipino",3,"'Mano po' shows?","respect","anger","sadness"],
+  ["filipino",3,"'Matulungin' means?","helpful","lazy","noisy"],
+  ["filipino",3,"'Magalang' means?","polite","rude","sleepy"],
+  ["filipino",3,"'Mapagmahal' means?","loving","angry","hungry"],
+  ["filipino",3,"Opposite of 'malinis'?","marumi","maganda","masaya"],
+  ["filipino",3,"Opposite of 'masaya'?","malungkot","masarap","mabango"],
+  ["filipino",3,"Opposite of 'matapang'?","duwag","matalino","mabilis"],
+  ["filipino",3,"'Bayani' means?","hero","farmer","teacher"],
+  ["filipino",3,"'Kalayaan' means?","freedom","friendship","family"],
+  ["filipino",3,"'Kasaysayan' means?","history","geography","music"],
+  ["filipino",3,"'Pagkakaisa' means?","unity","argument","journey"],
+  ["filipino",3,"'Wika' means?","language","water","road"],
+  ["english",1,"Opposite of 'hot'?","cold","warm","big"],
+  ["english",1,"Which is a color?","blue","dog","run"],
+  ["english",1,"Plural of 'cat'?","cats","cates","catt"],
+  ["english",1,"Which word starts with B?","ball","apple","cat"],
+  ["english",1,"Which is an animal?","cat","chair","cup"],
+  ["english",1,"Which is a fruit?","banana","carrot","spoon"],
+  ["english",1,"Opposite of 'up'?","down","over","high"],
+  ["english",1,"Opposite of 'big'?","small","tall","long"],
+  ["english",1,"What sound does a cow make?","moo","meow","quack"],
+  ["english",1,"Which word rhymes with 'cat'?","hat","dog","cup"],
+  ["english",1,"How many letters in 'dog'?","3","2","4"],
+  ["english",1,"Which is a shape?","circle","table","pencil"],
+  ["english",1,"Opposite of 'day'?","night","noon","sun"],
+  ["english",1,"Which letter comes after 'B'?","C","A","D"],
+  ["english",1,"Which word is an action?","jump","blue","happy"],
+  ["english",1,"Which is a day of the week?","Monday","January","Summer"],
+  ["english",1,"Which month comes after January?","February","March","December"],
+  ["english",2,"Plural of 'child'?","children","childs","childes"],
+  ["english",2,"Opposite of 'happy'?","sad","glad","fast"],
+  ["english",2,"Past tense of 'run'?","ran","runned","running"],
+  ["english",2,"Which is a noun?","table","quickly","jump"],
+  ["english",2,"Plural of 'box'?","boxes","boxs","boxen"],
+  ["english",2,"Plural of 'mouse'?","mice","mouses","mices"],
+  ["english",2,"Plural of 'foot'?","feet","foots","feets"],
+  ["english",2,"Past tense of 'eat'?","ate","eated","eats"],
+  ["english",2,"Past tense of 'see'?","saw","seed","sees"],
+  ["english",2,"Past tense of 'write'?","wrote","writed","writes"],
+  ["english",2,"Opposite of 'fast'?","slow","quick","late"],
+  ["english",2,"Opposite of 'early'?","late","soon","first"],
+  ["english",2,"Which is a verb?","swim","happy","table"],
+  ["english",2,"Which is an adjective?","tall","run","book"],
+  ["english",2,"A baby dog is a?","puppy","kitten","cub"],
+  ["english",2,"Synonym of 'happy'?","glad","angry","tired"],
+  ["english",2,"Which sentence is correct?","She is my friend.","She are my friend.","She am my friend."],
+  ["english",2,"Which is spelled right?","because","becuase","becouse"],
+  ["english",2,"'The book is over ___.'","there","their","they're"],
+  ["english",3,"Synonym of 'big'?","large","tiny","thin"],
+  ["english",3,"Which is an adjective?","beautiful","slowly","teacher"],
+  ["english",3,"Past tense of 'go'?","went","goed","goes"],
+  ["english",3,"Antonym of 'ancient'?","modern","old","historic"],
+  ["english",3,"Synonym of 'begin'?","start","finish","stop"],
+  ["english",3,"Antonym of 'brave'?","cowardly","bold","strong"],
+  ["english",3,"Which is a noun?","honesty","quickly","jumped"],
+  ["english",3,"Which is an adverb?","quickly","quick","quickness"],
+  ["english",3,"A group of fish is a?","school","herd","flock"],
+  ["english",3,"'I have ___ the glass.' (break)","broken","broke","breaked"],
+  ["english",3,"'She ___ to school every day.'","goes","go","going"],
+  ["english",3,"Which is a compound word?","sunflower","beautiful","happily"],
+  ["english",3,"Which is a conjunction?","because","under","quickly"],
+  ["english",3,"Which mark ends a question?","?",".","!"],
+  ["english",3,"Plural of 'city'?","cities","citys","citis"],
+  ["english",3,"Which means 'very big'?","enormous","tiny","narrow"],
+  ["english",3,"Antonym of 'expand'?","shrink","grow","stretch"],
+  ["english",3,"Which is a simile?","as quick as a cheetah","The cheetah ran","a cheetah's speed"],
+  ["science",1,"Which is a mammal?","dog","frog","shark"],
+  ["science",1,"The sky is usually?","blue","green","red"],
+  ["science",1,"The planet we live on?","Earth","Mars","Moon"],
+  ["science",1,"How many legs does a dog have?","4","2","6"],
+  ["science",1,"How many eyes do you have?","2","1","3"],
+  ["science",1,"What do fish live in?","water","trees","sand"],
+  ["science",1,"Which is a plant?","tree","rock","cloud"],
+  ["science",1,"We see with our?","eyes","ears","nose"],
+  ["science",1,"We hear with our?","ears","eyes","hands"],
+  ["science",1,"Which is hot?","fire","ice","snow"],
+  ["science",1,"What do cows give us?","milk","honey","eggs"],
+  ["science",1,"The sun gives us?","light","snow","sound"],
+  ["science",1,"Which animal can fly?","bird","fish","cow"],
+  ["science",1,"Which is a kind of weather?","rainy","round","loud"],
+  ["science",1,"How many days in a week?","7","5","10"],
+  ["science",1,"What color is a ripe banana?","yellow","blue","purple"],
+  ["science",1,"Which one is alive?","dog","rock","chair"],
+  ["science",2,"Plants need sunlight to make?","food","noise","plastic"],
+  ["science",2,"Water freezes into?","ice","steam","sand"],
+  ["science",2,"How many legs does a spider have?","8","6","4"],
+  ["science",2,"The largest planet?","Jupiter","Earth","Venus"],
+  ["science",2,"Which planet is closest to the Sun?","Mercury","Earth","Neptune"],
+  ["science",2,"What do bees make?","honey","milk","silk"],
+  ["science",2,"Which plant part takes in water?","roots","leaves","flower"],
+  ["science",2,"What is frozen water called?","ice","steam","fog"],
+  ["science",2,"The Moon orbits the?","Earth","Sun","Mars"],
+  ["science",2,"Which is a reptile?","snake","frog","whale"],
+  ["science",2,"Which is an insect?","ant","spider","snail"],
+  ["science",2,"Which animal lays eggs?","chicken","cow","dog"],
+  ["science",2,"Which sense uses the tongue?","taste","smell","sight"],
+  ["science",2,"Plants give off which gas?","oxygen","helium","smoke"],
+  ["science",2,"How many planets in our solar system?","8","9","7"],
+  ["science",2,"Magnets attract?","iron","paper","wood"],
+  ["science",2,"Which is a source of light?","the Sun","a rock","a book"],
+  ["science",3,"Gas we need to breathe?","oxygen","hydrogen","helium"],
+  ["science",3,"Center of our solar system?","the Sun","the Moon","Mars"],
+  ["science",3,"How plants make food?","photosynthesis","evaporation","digestion"],
+  ["science",3,"Boiling point of water (°C)?","100","50","200"],
+  ["science",3,"The force that pulls things down?","gravity","friction","magnetism"],
+  ["science",3,"The organ that pumps blood?","heart","lungs","stomach"],
+  ["science",3,"Animals that eat only plants?","herbivores","carnivores","omnivores"],
+  ["science",3,"Water turning into vapor is?","evaporation","condensation","freezing"],
+  ["science",3,"A planet's path around the Sun?","orbit","rotation","eclipse"],
+  ["science",3,"Which is renewable energy?","solar","coal","oil"],
+  ["science",3,"H2O is the formula for?","water","salt","oxygen"],
+  ["science",3,"The smallest unit of life?","cell","atom","organ"],
+  ["science",3,"Which planet is famous for rings?","Saturn","Mars","Venus"],
+  ["science",3,"What causes day and night?","Earth's rotation","the Moon","clouds"],
+  ["science",3,"Which layer blocks UV rays?","ozone","troposphere","crust"],
+  ["science",3,"Animals with backbones are?","vertebrates","invertebrates","fungi"],
+  ["science",3,"Plants use sunlight, water and?","carbon dioxide","oxygen","nitrogen"],
+  ["ph",1,"Our national bird?","Philippine Eagle","Pigeon","Crow"],
+  ["ph",1,"Our national flower?","Sampaguita","Rose","Sunflower"],
+  ["ph",1,"Our national tree?","Narra","Pine","Coconut"],
+  ["ph",1,"Our national animal?","Carabao","Dog","Horse"],
+  ["ph",1,"Our national hero?","Jose Rizal","Ferdinand Magellan","Juan Luna"],
+  ["ph",1,"Our capital city?","Manila","Cebu","Davao"],
+  ["ph",1,"Our money is the?","Peso","Dollar","Yen"],
+  ["ph",1,"Famous PH public vehicle?","Jeepney","Gondola","Tram"],
+  ["ph",1,"Our national language?","Filipino","Spanish","Japanese"],
+  ["ph",1,"Which island group is in the north?","Luzon","Mindanao","Visayas"],
+  ["ph",1,"Our national fruit?","Mango","Apple","Grapes"],
+  ["ph",2,"Largest island in the PH?","Luzon","Cebu","Palawan"],
+  ["ph",2,"Southern island group?","Mindanao","Luzon","Visayas"],
+  ["ph",2,"Chocolate Hills are in?","Bohol","Palawan","Batanes"],
+  ["ph",2,"Mayon Volcano is in?","Albay","Cebu","Davao"],
+  ["ph",2,"Banaue Rice Terraces are in?","Ifugao","Laguna","Batangas"],
+  ["ph",2,"Taal Volcano is in?","Batangas","Bohol","Cebu"],
+  ["ph",2,"Rizal Park is in?","Manila","Cebu","Baguio"],
+  ["ph",2,"Stars on our flag?","3","8","5"],
+  ["ph",2,"Main island groups of the PH?","3","2","5"],
+  ["ph",2,"Rays of the sun on our flag?","8","3","12"],
+  ["ph",2,"Independence Day is on?","June 12","July 4","December 25"],
+  ["ph",2,"'Pandesal' is a?","bread","drink","dance"],
+  ["ph",2,"'Sinigang' is a?","sour soup","dessert","fried rice"],
+  ["ph",2,"Which is a Filipino dessert?","halo-halo","adobo","sinigang"],
+  ["ph",2,"The 'Summer Capital'?","Baguio","Davao","Manila"],
+  ["ph",3,"Who fought in the Battle of Mactan?","Lapu-Lapu","Rizal","Bonifacio"],
+  ["ph",3,"Founder of the Katipunan?","Andres Bonifacio","Emilio Aguinaldo","Apolinario Mabini"],
+  ["ph",3,"First president of the PH?","Emilio Aguinaldo","Manuel Quezon","Jose Rizal"],
+  ["ph",3,"Rizal's first novel?","Noli Me Tangere","El Filibusterismo","Florante at Laura"],
+  ["ph",3,"Who wrote 'Florante at Laura'?","Francisco Balagtas","Jose Rizal","Andres Bonifacio"],
+  ["ph",3,"How many islands in the PH?","7,641","700","70,000"],
+  ["ph",3,"Longest river in the PH?","Cagayan River","Pasig River","Agno River"],
+  ["ph",3,"Highest mountain in the PH?","Mount Apo","Mount Mayon","Mount Pulag"],
+  ["ph",3,"The PH is in which continent?","Asia","Africa","Europe"],
+  ["ph",3,"Which ocean is east of the PH?","Pacific Ocean","Atlantic Ocean","Indian Ocean"],
+  ["ph",3,"What do we celebrate on Dec 30?","Rizal Day","Labor Day","Flag Day"],
+  ["ph",3,"Who colonized the PH for 300+ years?","Spain","Brazil","Egypt"],
+  ["ph",3,"Dance using bamboo poles?","Tinikling","Cariñosa","Maglalatik"]
+];
+const CATS = [['math','Math'],['filipino','Filipino'],['english','English'],['science','Science'],['ph','Pilipinas'],['mixed','Mixed']];
+const LVLS = [[1,'Grades 1-2'],[2,'Grades 3-4'],[3,'Grades 5-6']];
+
+const rand = n => Math.floor(Math.random() * n);
+const shuffle = a => a.sort(() => Math.random() - .5);
+let recent = [];
+
+// ---------- STEP 7: load questions.json (falls back to the BANK above) ----------
+fetch('questions.json').then(r => r.json()).then(d => {
+  if (Array.isArray(d) && d.length) BANK = d.map(o => [o.cat, o.level, o.q, o.answer, o.wrong[0], o.wrong[1]]);
+}).catch(() => {});
+
+function genMath(lvl) {
+  let a, b, q, ans;
+  const alt = Math.random() < 0.3 ? rand(2) : -1;
+  if (alt === 0) { const m = [10, 30, 60][lvl - 1]; a = 1 + rand(m); b = 1 + rand(m); q = `${a} + ? = ${a + b}`; ans = b; }
+  else if (alt === 1) { const d = [1 + rand(3), 2 + rand(9), 5 + rand(21)][lvl - 1], s0 = 1 + rand(lvl * 10); q = `${s0}, ${s0 + d}, ${s0 + 2 * d}, ?`; ans = s0 + 3 * d; }
+  else if (lvl === 1) {
+    a = 1 + rand(10); b = 1 + rand(10);
+    if (rand(2)) { q = `${a} + ${b}`; ans = a + b; }
+    else { const hi = Math.max(a, b), lo = Math.min(a, b); q = `${hi} − ${lo}`; ans = hi - lo; }
+  } else if (lvl === 2) {
+    const op = rand(3);
+    if (op === 0) { a = 10 + rand(40); b = 5 + rand(40); q = `${a} + ${b}`; ans = a + b; }
+    else if (op === 1) { a = 20 + rand(30); b = 1 + rand(19); q = `${a} − ${b}`; ans = a - b; }
+    else { a = 2 + rand(9); b = 2 + rand(9); q = `${a} × ${b}`; ans = a * b; }
+  } else {
+    const op = rand(3);
+    if (op === 0) { a = 3 + rand(10); b = 3 + rand(10); q = `${a} × ${b}`; ans = a * b; }
+    else if (op === 1) { b = 2 + rand(10); ans = 2 + rand(11); a = b * ans; q = `${a} ÷ ${b}`; }
+    else { a = 40 + rand(60); b = 20 + rand(60); q = `${a} + ${b}`; ans = a + b; }
+  }
+  const spread = lvl === 1 ? 3 : lvl === 2 ? 6 : 10;
+  const w = new Set();
+  while (w.size < 2) { const v = ans + rand(spread * 2 + 1) - spread; if (v !== ans && v >= 0) w.add(v); }
+  return { q: alt >= 0 ? q : q + ' = ?', ans: String(ans), wrong: [...w].map(String) };
+}
+
+function makeQ() {
+  let r;
+  for (let tries = 0; tries < 15; tries++) {
+    const cat = sel.cat === 'mixed' ? ['math','filipino','english','science','ph'][rand(5)] : sel.cat;
+    const pool = cat === 'math' ? [] : BANK.filter(e => e[0] === cat && e[1] === sel.lvl);
+    if (!pool.length) r = genMath(sel.lvl);
+    else { const e = pool[rand(pool.length)]; r = { q: e[2], ans: e[3], wrong: [e[4], e[5]] }; }
+    if (!recent.includes(r.q)) break;
+  }
+  recent.push(r.q); if (recent.length > 30) recent.shift();
+  const opts = shuffle([r.ans, ...r.wrong]);
+  return { q: r.q, ans: r.ans, opts, idx: opts.indexOf(r.ans) };
+}
+
+// ---------- STEP 4: SOUND (made with code, no files needed) ----------
+let AC = null, master = null, muted = localStorage.getItem('qr_mute') === '1', musicTimer = null, mi = 0;
+function audioInit() {
+  if (AC) { if (AC.state === 'suspended') AC.resume(); return; }
+  try {
+    AC = new (window.AudioContext || window.webkitAudioContext)();
+    master = AC.createGain(); master.gain.value = muted ? 0 : 1; master.connect(AC.destination);
+  } catch (e) {}
+}
+function toggleMute() {
+  muted = !muted; try { localStorage.setItem('qr_mute', muted ? '1' : '0'); } catch (e) {}
+  audioInit(); if (master) master.gain.value = muted ? 0 : 1;
+}
+function tone(f, d, type, vol, f2, delay) {
+  if (!AC) return;
+  const t = AC.currentTime + (delay || 0), o = AC.createOscillator(), g = AC.createGain();
+  o.type = type || 'square'; o.frequency.setValueAtTime(f, t);
+  if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+  g.gain.setValueAtTime(vol || 0.15, t); g.gain.exponentialRampToValueAtTime(0.001, t + d);
+  o.connect(g); g.connect(master); o.start(t); o.stop(t + d + 0.02);
+}
+function sfx(n) {
+  ({
+    jump: () => tone(300, 0.18, 'square', 0.1, 600),
+    slide: () => tone(400, 0.2, 'sawtooth', 0.08, 150),
+    coin: () => { tone(988, 0.08, 'square', 0.1); tone(1319, 0.15, 'square', 0.1, 0, 0.07); },
+    power: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, 0.12, 'triangle', 0.15, 0, i * 0.07)),
+    hit: () => tone(200, 0.3, 'sawtooth', 0.2, 60),
+    shield: () => tone(800, 0.25, 'triangle', 0.2, 300),
+    correct: () => [523, 659, 784].forEach((f, i) => tone(f, 0.15, 'triangle', 0.18, 0, i * 0.09)),
+    wrong: () => { tone(300, 0.25, 'square', 0.12, 200); tone(200, 0.35, 'square', 0.12, 120, 0.2); },
+    over: () => [392, 330, 262, 196].forEach((f, i) => tone(f, 0.3, 'triangle', 0.2, 0, i * 0.2))
+  })[n]();
+}
+const MEL = [0,4,7,9,7,4,2,4, 0,4,7,12,9,7,4,2], BASS = [0,-5,-3,-7];
+function musicOn() {
+  musicOff(); mi = 0;
+  musicTimer = setInterval(() => {
+    if (!AC) return;
+    tone(261.63 * Math.pow(2, MEL[mi % 16] / 12), 0.22, 'triangle', 0.05);
+    if (mi % 4 === 0) tone(130.81 * Math.pow(2, BASS[((mi / 4) | 0) % 4] / 12), 0.5, 'sine', 0.08);
+    mi++;
+  }, 230);
+}
+function musicOff() { clearInterval(musicTimer); }
+document.addEventListener('visibilitychange', () => { if (AC) document.hidden ? AC.suspend() : AC.resume(); });
+
+// ---------- STATE ----------
+let sel = { cat: 'mixed', lvl: 1 };
+try { const s = JSON.parse(localStorage.getItem('qr_sel')); if (s && s.cat && s.lvl) sel = s; } catch (e) {}
+let st = 'menu', lane = 1, tl = 1, jump = 0, jv = 0, items = [], gate = null;
+let score = 0, lives = 3, speed = 0.45, spawnT = 1, gateT = 6, msg = '', msgT = 0, msgOk = true, shake = 0, off = 0;
+let best = +(localStorage.getItem('qr_best') || 0);
+let slide = 0, shield = false, slowT = 0, missed = [], stats = { n: 0, ok: 0 };
+let flash = 0, gt = 0, scroll = 0, parts = [], pendingQ = null, dustT = 0, curSpd = 0.22, runT = 0, runPh = 0;
+
+function start() {
+  try { localStorage.setItem('qr_sel', JSON.stringify(sel)); } catch (e) {}
+  st = 'play'; lane = tl = 1; jump = jv = 0; items = []; gate = null; recent = [];
+  slide = 0; shield = false; slowT = 0; missed = []; stats = { n: 0, ok: 0 }; pendingQ = null; parts = []; runT = 0; curSpd = 0.22; audioInit(); musicOn();
+  score = 0; lives = 3; speed = 0.22; spawnT = 1.5; gateT = 6; msg = ''; shake = 0;
+}
+function say(t, ok) { msg = t; msgT = 1.6; msgOk = ok; }
+
+// ---------- MENU BUTTONS ----------
+function buttons() {
+  const b = [];
+  if (st === 'menu') {
+    CATS.forEach((cv, i) => {
+      const bx = 25 + (i % 3) * 150, by = i < 3 ? 215 : 290;
+      b.push({ x: bx, y: by, w: 140, h: 60, label: cv[1], sel: sel.cat === cv[0], act: () => sel.cat = cv[0] });
+    });
+    LVLS.forEach((lv, i) => {
+      b.push({ x: 25 + i * 150, y: 395, w: 140, h: 60, label: lv[1], sel: sel.lvl === lv[0], act: () => sel.lvl = lv[0] });
+    });
+    b.push({ x: 90, y: 540, w: 300, h: 80, label: '▶ START', go: true, act: start });
+  } else if (st === 'over') {
+    b.push({ x: 90, y: 640, w: 300, h: 64, label: '↻ Play Again', go: true, act: start });
+    b.push({ x: 90, y: 715, w: 300, h: 64, label: '☰ Menu', act: () => st = 'menu' });
+  }
+  return b;
+}
+
+// ---------- INPUT ----------
+function left() { lane = Math.max(0, lane - 1); }
+function right() { lane = Math.min(2, lane + 1); }
+function up() { if (jump === 0) { jv = 720; sfx('jump'); } }
+function down() { if (jump > 0) jv = -1100; slide = 0.6; sfx('slide'); }
+addEventListener('keydown', e => {
+  const k = e.key;
+  if (k === 'm') { toggleMute(); return; }
+  if (st !== 'play') { if (k === 'Enter' || k === ' ') start(); return; }
+  if (k === 'ArrowLeft' || k === 'a') left();
+  if (k === 'ArrowRight' || k === 'd') right();
+  if (k === 'ArrowUp' || k === 'w' || k === ' ') up();
+  if (k === 'ArrowDown' || k === 's') down();
+});
+let tx = 0, ty = 0, downInPlay = false;
+c.addEventListener('pointerdown', e => {
+  tx = e.clientX; ty = e.clientY; downInPlay = st === 'play'; audioInit();
+  const r = c.getBoundingClientRect();
+  const mx = (e.clientX - r.left) * W / r.width, my = (e.clientY - r.top) * H / r.height;
+  if (mx > W - 75 && my > H - 75) { downInPlay = false; toggleMute(); return; }
+  if (st === 'play') return;
+  for (const b of buttons()) if (mx >= b.x && mx <= b.x + b.w && my >= b.y && my <= b.y + b.h) { b.act(); return; }
+});
+c.addEventListener('pointerup', e => {
+  if (!downInPlay || st !== 'play') return;
+  const dx = e.clientX - tx, dy = e.clientY - ty;
+  if (Math.abs(dx) < 25 && Math.abs(dy) < 25) { up(); return; }
+  if (Math.abs(dx) > Math.abs(dy)) dx > 0 ? right() : left(); else if (dy < 0) up(); else down();
+});
+
+// ---------- UPDATE ----------
+function hurt() {
+  const hx = PX(lane - 1, 0.88), hy = PY(0.88) - 50;
+  if (shield) { shield = false; shake = 0.15; sfx('shield'); burst(hx, hy, '#00e5ff', 18); }
+  else { lives--; shake = 0.3; flash = 0.3; sfx('hit'); burst(hx, hy, '#ff5252', 18); }
+}
+function update(dt) {
+  if (msgT > 0) msgT -= dt;
+  if (shake > 0) shake -= dt;
+  if (flash > 0) flash -= dt;
+  gt += dt;
+  parts.forEach(p => { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += (p.g || 0) * dt; p.life -= dt; });
+  parts = parts.filter(p => p.life > 0);
+  if (st !== 'play') { scroll += 0.1 * dt; return; }
+
+  runT += dt;
+  speed = 0.22 + 0.5 * (1 - Math.exp(-runT / 70));          // slow start, keeps getting faster
+  let target = speed * (slowT > 0 ? 0.55 : 1);
+  if (gate || pendingQ) target = Math.min(target * 0.62, 0.22);   // always slow enough to read a question
+  curSpd += (target - curSpd) * Math.min(1, dt * 2.5);
+  const spd = curSpd;
+  scroll += spd * dt;
+  runPh += dt * (8 + speed * 16);                             // legs move faster as the game speeds up
+  if (slowT > 0) slowT -= dt;
+  if (slide > 0) slide -= dt;
+  dustT -= dt;
+  if (dustT <= 0 && jump === 0) {
+    dustT = 0.07;
+    parts.push({ x: PX(tl - 1, 0.88) + (Math.random() - .5) * 16, y: PY(0.88), vx: (Math.random() - .5) * 30, vy: -25 - Math.random() * 20, g: 0, life: 0.4, max: 0.4, r: 4 + Math.random() * 3, col: '#e0e0e0' });
+  }
+  tl += (lane - tl) * Math.min(1, dt * 14);
+  if (jv !== 0 || jump > 0) { jump += jv * dt; jv -= 1800 * dt; if (jump <= 0) { jump = 0; jv = 0; } }
+  score += dt * 5;
+
+  spawnT -= dt; gateT -= dt;
+  if (!gate && !pendingQ && gateT <= 2.5) pendingQ = makeQ();
+  if (!gate && gateT <= 0) { gate = { z: 0.02, ...pendingQ }; pendingQ = null; gateT = 15; }
+  else if (!gate && !pendingQ && spawnT <= 0) {
+    const r = Math.random();
+    items.push({ z: 0.02, l: rand(3), v: rand(3), t: r < 0.45 ? 'ob' : r < 0.6 ? 'low' : r < 0.88 ? 'coin' : r < 0.94 ? 'shield' : 'slow' });
+    spawnT = (0.7 + Math.random() * 0.6) * 0.4 / speed;
+  }
+
+  for (const it of items) {
+    it.z += spd * dt;
+    if (!it.done && it.z > 0.82 && it.z < 0.95 && it.l === lane) {
+      if (it.t === 'coin') { score += 10; it.done = it.gone = true; sfx('coin'); burst(PX(it.l - 1, it.z), PY(it.z) - 40, '#ffd54f', 12); }
+      else if (it.t === 'shield') { shield = true; it.done = it.gone = true; sfx('power'); burst(PX(it.l - 1, it.z), PY(it.z) - 40, '#00e5ff', 14); }
+      else if (it.t === 'slow') { slowT = 6; it.done = it.gone = true; sfx('power'); burst(PX(it.l - 1, it.z), PY(it.z) - 40, '#b388ff', 14); }
+      else if (it.t === 'ob' ? jump < 45 : slide <= 0) { hurt(); it.done = true; }
+    }
+  }
+  items = items.filter(i => i.z < 1.1 && !i.gone);
+
+  if (gate) {
+    gate.z += spd * dt;
+    if (gate.z >= 0.88) {
+      stats.n++;
+      if (lane === gate.idx) { stats.ok++; score += 50; say('Correct! +50', true); sfx('correct'); confetti(); }
+      else { missed.push({ q: gate.q, ans: gate.ans, pick: gate.opts[lane] }); hurt(); say('Answer: ' + gate.ans, false); sfx('wrong'); }
+      gate = null; spawnT = 1.2;
+    }
+  }
+  if (lives <= 0) {
+    st = 'over'; musicOff(); sfx('over');
+    if (score > best) { best = Math.floor(score); try { localStorage.setItem('qr_best', best); } catch (e) {} }
+  }
+}
+
+// ---------- DRAW ----------
+const PX = (b, z) => W / 2 + b * SP * z, PY = z => HOR + (GY - HOR) * z;
+const BZ = u => Math.pow(Math.max(0, u), 2) * 1.25 + 0.03;
+
+// Optional real art: put transparent PNGs in a "sprites" folder (player, ob, low, coin, shield, slow) and set this to true.
+const USE_SPRITES = false;
+const IMG = {};
+if (USE_SPRITES) ['player', 'ob', 'low', 'coin', 'shield', 'slow'].forEach(k => {
+  const i = new Image(); i.onload = () => i.ok = true; i.src = 'sprites/' + k + '.png'; IMG[k] = i;
+});
+const im = k => (IMG[k] && IMG[k].ok ? IMG[k] : null);
+
+function emoji(ch, px, py, size) {
+  x.font = `${size}px serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillStyle = '#fff'; x.fillText(ch, px, py);
+}
+function text(t, px, py, size, col, align) {
+  x.font = `bold ${size}px system-ui, sans-serif`; x.textAlign = align || 'center'; x.textBaseline = 'middle';
+  x.lineJoin = 'round'; x.lineWidth = Math.max(2, size / 5); x.strokeStyle = 'rgba(0,0,0,.6)'; x.strokeText(t, px, py);
+  x.fillStyle = col || '#fff'; x.fillText(t, px, py);
+}
+function fitText(t, px, py, maxW, maxFs, col) {
+  const mw = s => { x.font = `bold ${maxFs}px system-ui, sans-serif`; return x.measureText(s).width; };
+  let lines = [t];
+  if (mw(t) > maxW && t.includes(' ')) {
+    const w = t.split(' '); let best = null;
+    for (let i = 1; i < w.length; i++) {
+      const a = w.slice(0, i).join(' '), b = w.slice(i).join(' '), m = Math.max(mw(a), mw(b));
+      if (!best || m < best.m) best = { a, b, m };
+    }
+    lines = [best.a, best.b];
+  }
+  const widest = Math.max(...lines.map(mw)), fs = Math.max(9, Math.min(maxFs, maxFs * maxW / widest) * (lines.length > 1 ? 0.9 : 1));
+  lines.forEach((l, i) => text(l, px, py + (i - (lines.length - 1) / 2) * fs * 1.05, fs, col));
+}
+function rr(px, py, w, h, r, fill, stroke, lw) {
+  x.beginPath(); x.roundRect(px, py, w, h, r);
+  if (fill) { x.fillStyle = fill; x.fill(); }
+  if (stroke) { x.strokeStyle = stroke; x.lineWidth = lw || 2; x.stroke(); }
+}
+function quad(b0, b1, z0, z1, col) {
+  x.fillStyle = col; x.beginPath();
+  x.moveTo(PX(b0, z0), PY(z0)); x.lineTo(PX(b1, z0), PY(z0)); x.lineTo(PX(b1, z1), PY(z1)); x.lineTo(PX(b0, z1), PY(z1)); x.fill();
+}
+function vgrad(y0, y1, c0, c1) { const g = x.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, c0); g.addColorStop(1, c1); return g; }
+function shadow(px, gy, w) { x.fillStyle = 'rgba(0,0,0,.28)'; x.beginPath(); x.ellipse(px, gy, w, w * 0.28, 0, 0, 7); x.fill(); }
+
+// ---------- particles ----------
+function burst(px, py, col, n) {
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * 6.28, v = 60 + Math.random() * 160;
+    parts.push({ x: px, y: py, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 60, g: 400, life: 0.6, max: 0.6, r: 3 + Math.random() * 3, col });
+  }
+}
+function confetti() {
+  const cols = ['#ff5252', '#ffd54f', '#69f0ae', '#40c4ff', '#e040fb'];
+  for (let i = 0; i < 45; i++) parts.push({ x: W / 2 + (Math.random() - .5) * 300, y: 330, vx: (Math.random() - .5) * 260, vy: -150 - Math.random() * 250, g: 500, life: 1.3, max: 1.3, r: 5 + Math.random() * 4, col: cols[rand(5)], sq: true });
+}
+function drawParts() {
+  parts.forEach(p => {
+    x.globalAlpha = Math.max(0, p.life / p.max); x.fillStyle = p.col;
+    if (p.sq) x.fillRect(p.x, p.y, p.r * 1.6, p.r); else { x.beginPath(); x.arc(p.x, p.y, p.r, 0, 7); x.fill(); }
+  });
+  x.globalAlpha = 1;
+}
+
+// ---------- scenery ----------
+function palm(px, gy, s) {
+  x.lineCap = 'round'; x.strokeStyle = '#8d5a2b'; x.lineWidth = 9 * s;
+  x.beginPath(); x.moveTo(px, gy); x.quadraticCurveTo(px + 10 * s, gy - 60 * s, px + 4 * s, gy - 115 * s); x.stroke();
+  x.strokeStyle = '#2e9b3e'; x.lineWidth = 7 * s;
+  for (let i = 0; i < 5; i++) {
+    const a = -2.9 + i * 0.62, tx = px + 4 * s, ty = gy - 115 * s;
+    x.beginPath(); x.moveTo(tx, ty);
+    x.quadraticCurveTo(tx + Math.cos(a) * 30 * s, ty + Math.sin(a) * 30 * s - 10 * s, tx + Math.cos(a) * 55 * s, ty + Math.sin(a) * 20 * s + 25 * s); x.stroke();
+  }
+}
+function hut(px, gy, s) {
+  rr(px - 28 * s, gy - 38 * s, 56 * s, 38 * s, 3 * s, '#e8c88a');
+  x.fillStyle = '#7a5230'; x.fillRect(px - 5 * s, gy - 24 * s, 10 * s, 24 * s);
+  x.fillStyle = '#b5833a'; x.beginPath(); x.moveTo(px - 40 * s, gy - 36 * s); x.lineTo(px, gy - 78 * s); x.lineTo(px + 40 * s, gy - 36 * s); x.fill();
+}
+function tree(px, gy, s) {
+  x.fillStyle = '#6d4c2f'; x.fillRect(px - 5 * s, gy - 40 * s, 10 * s, 40 * s);
+  x.fillStyle = '#2f8f3a';
+  [[0, -70, 30], [-18, -52, 22], [18, -52, 22]].forEach(c => { x.beginPath(); x.arc(px + c[0] * s, gy + c[1] * s, c[2] * s, 0, 7); x.fill(); });
+}
+function drawWorld() {
+  x.fillStyle = vgrad(0, HOR, '#2f9bf0', '#c6ecff'); x.fillRect(0, 0, W, HOR + 2);
+  const sg = x.createRadialGradient(385, 105, 8, 385, 105, 80);
+  sg.addColorStop(0, '#fffde7'); sg.addColorStop(.3, '#ffe082'); sg.addColorStop(1, 'rgba(255,224,130,0)');
+  x.fillStyle = sg; x.fillRect(285, 5, 200, 200);
+  x.fillStyle = 'rgba(255,255,255,.92)';
+  for (let k = 0; k < 4; k++) {
+    const cx = ((gt * 6 + k * 170) % (W + 200)) - 100, cy = 50 + (k * 47) % 130;
+    [[0, 0, 34], [30, 6, 26], [-30, 8, 24], [8, -12, 24]].forEach(o => { x.beginPath(); x.arc(cx + o[0], cy + o[1], o[2], 0, 7); x.fill(); });
+  }
+  [['#8fb8d8', 34, .012, .05, 50], ['#4fa04a', 20, .02, .12, 22]].forEach(h => {
+    x.fillStyle = h[0]; x.beginPath(); x.moveTo(0, HOR);
+    for (let px = 0; px <= W; px += 8) x.lineTo(px, HOR - h[4] - h[1] * Math.sin(px * h[2] * 3 + scroll * h[3] * 40));
+    x.lineTo(W, HOR); x.fill();
+  });
+  const sc = scroll * 2, base = Math.floor(sc), fr = sc - base, N = 14;
+  x.fillStyle = '#3f9d3a'; x.fillRect(0, HOR, W, H - HOR);
+  quad(-1.62, 1.62, 0.03, 1.6, '#555');
+  for (let i = 0; i <= N; i++) {
+    const z0 = BZ((i - 1 + fr) / N), z1 = BZ((i + fr) / N), par = (((i - base) % 2) + 2) % 2;
+    if (z1 <= z0) continue;
+    x.fillStyle = par ? '#43a53d' : '#389634'; x.fillRect(0, PY(z0), W, PY(z1) - PY(z0) + 1);
+    quad(-1.5, 1.5, z0, z1, par ? '#5b5d6b' : '#52545f');
+    quad(-1.62, -1.5, z0, z1, par ? '#e53935' : '#fafafa');
+    quad(1.5, 1.62, z0, z1, par ? '#e53935' : '#fafafa');
+    if (par) [-0.5, 0.5].forEach(b => quad(b - 0.015, b + 0.015, z0, z1, 'rgba(255,255,255,.85)'));
+  }
+  for (let i = 1; i <= N; i++) {
+    const id = i - base;
+    if (((id % 3) + 3) % 3 !== 0) continue;
+    const k = Math.round(id / 3), side = (((k % 2) + 2) % 2) ? 1 : -1, type = ((k % 3) + 3) % 3;
+    const z = BZ((i - 0.5 + fr) / N), px = PX(side * (type === 1 ? 2.7 : 2.2), z), gy = PY(z), s = z * 1.3;
+    shadow(px, gy, 30 * s);
+    if (type === 0) palm(px, gy, s); else if (type === 1) hut(px, gy, s); else tree(px, gy, s);
+  }
+}
+
+// ---------- items, gate, player ----------
+function drawLow(px, gy, z) {
+  const I = im('low'), w = SP * 0.92 * z, h = 34 * z, cy = gy - 88 * z;
+  shadow(px, gy, w * .45);
+  if (I) { x.drawImage(I, px - w / 2, cy - h, w, h * 2); return; }
+  x.fillStyle = '#607d8b'; x.fillRect(px - w / 2, cy, 9 * z, gy - cy); x.fillRect(px + w / 2 - 9 * z, cy, 9 * z, gy - cy);
+  rr(px - w / 2, cy - h / 2, w, h, 5 * z, '#ffc107');
+  x.save(); x.beginPath(); x.roundRect(px - w / 2, cy - h / 2, w, h, 5 * z); x.clip();
+  x.fillStyle = '#212121';
+  for (let k = -2; k < 10; k++) {
+    const sx = px - w / 2 + k * h * .9; x.beginPath();
+    x.moveTo(sx, cy + h / 2); x.lineTo(sx + h * .45, cy + h / 2); x.lineTo(sx + h * 1.05, cy - h / 2); x.lineTo(sx + h * .6, cy - h / 2); x.fill();
+  }
+  x.restore();
+  rr(px - w / 2, cy - h / 2, w, h, 5 * z, null, '#212121', Math.max(1, 3 * z));
+  emoji('⬇️', px, cy + h * .9, h * .8);
+}
+function drawItem(it) {
+  const z = it.z, px = PX(it.l - 1, z), gy = PY(z), s = 95 * z;
+  if (it.t === 'low') return drawLow(px, gy, z);
+  if (it.t === 'ob') {
+    const I = im('ob'); shadow(px, gy, s * .5);
+    if (I) { x.drawImage(I, px - s / 2, gy - s, s, s); return; }
+    if (it.v === 0) {
+      rr(px - s * .42, gy - s * .8, s * .84, s * .8, s * .06, '#c98a45', '#6b3f17', Math.max(1, s * .05));
+      x.strokeStyle = '#8a5524'; x.lineWidth = Math.max(1, s * .06);
+      x.beginPath(); x.moveTo(px - s * .38, gy - s * .76); x.lineTo(px + s * .38, gy - s * .04); x.moveTo(px + s * .38, gy - s * .76); x.lineTo(px - s * .38, gy - s * .04); x.stroke();
+    } else if (it.v === 1) {
+      rr(px - s * .48, gy - s * .55, s * .96, s * .28, s * .05, '#fafafa', '#b71c1c', Math.max(1, s * .04));
+      x.fillStyle = '#e53935'; for (let k = 0; k < 4; k++) x.fillRect(px - s * .44 + k * s * .24, gy - s * .53, s * .12, s * .24);
+      x.fillStyle = '#777'; x.fillRect(px - s * .38, gy - s * .27, s * .06, s * .27); x.fillRect(px + s * .32, gy - s * .27, s * .06, s * .27);
+    } else {
+      x.fillStyle = '#ff6d00'; x.beginPath(); x.moveTo(px - s * .3, gy); x.lineTo(px + s * .3, gy); x.lineTo(px + s * .08, gy - s * .8); x.lineTo(px - s * .08, gy - s * .8); x.fill();
+      x.fillStyle = '#fff'; x.fillRect(px - s * .19, gy - s * .42, s * .38, s * .12);
+      x.fillStyle = '#bf360c'; x.fillRect(px - s * .36, gy - s * .06, s * .72, s * .08);
+    }
+    return;
+  }
+  const bob = Math.sin(gt * 4 + it.l * 2) * s * 0.06;
+  if (it.t === 'coin') {
+    const I = im('coin'), cy = gy - s * .55 + bob, w = Math.max(s * .1, s * .55 * Math.abs(Math.cos(gt * 5 + it.l)));
+    shadow(px, gy, s * .3);
+    if (I) { x.drawImage(I, px - w / 2, cy - s * .3, w, s * .6); return; }
+    x.fillStyle = '#ffb300'; x.beginPath(); x.ellipse(px, cy, w, s * .3, 0, 0, 7); x.fill();
+    x.fillStyle = '#ffe082'; x.beginPath(); x.ellipse(px, cy, w * .72, s * .22, 0, 0, 7); x.fill();
+    x.fillStyle = '#ffb300'; x.fillRect(px - w * .1, cy - s * .12, Math.max(1, w * .2), s * .24);
+    return;
+  }
+  const col = it.t === 'shield' ? '#00e5ff' : '#b388ff', cy = gy - s * .6 + bob;
+  shadow(px, gy, s * .3);
+  const g = x.createRadialGradient(px, cy, s * .05, px, cy, s * .5);
+  g.addColorStop(0, 'rgba(255,255,255,.9)'); g.addColorStop(.6, col); g.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = g; x.beginPath(); x.arc(px, cy, s * .5, 0, 7); x.fill();
+  const I = im(it.t);
+  if (I) x.drawImage(I, px - s * .3, cy - s * .3, s * .6, s * .6); else emoji(it.t === 'shield' ? '🛡️' : '⏳', px, cy, s * .5);
+}
+function drawGate() {
+  const z = gate.z, w = SP * 0.92 * z, h = 110 * z, gy = PY(z), top = gy - 205 * z, post = 14 * z;
+  const cols = [['#ff6b6b', '#c62828'], ['#4dabff', '#1565c0'], ['#ffd54f', '#f9a825']], L = ['A', 'B', 'C'];
+  const mats = ['rgba(255,82,82,.35)', 'rgba(33,150,243,.35)', 'rgba(255,213,79,.4)'];
+  for (let i = 0; i < 3; i++) quad(i - 1 - .46, i - 1 + .46, z - 0.07, z, mats[i]);
+  x.fillStyle = '#37474f'; x.fillRect(PX(-1.5, z) - post, top, post, gy - top); x.fillRect(PX(1.5, z), top, post, gy - top);
+  rr(PX(-1.5, z) - post, top - 6 * z, PX(1.5, z) - PX(-1.5, z) + 2 * post, 24 * z, 6 * z, '#455a64', '#fff', Math.max(1, 2 * z));
+  for (let i = 0; i < 3; i++) {
+    const px = PX(i - 1, z), by = gy - 150 * z;
+    x.fillStyle = '#263238'; x.fillRect(px - 2 * z, top + 18 * z, 4 * z, by - top - 14 * z);
+    rr(px - w / 2, by + 5 * z, w, h, 14 * z, 'rgba(0,0,0,.35)');
+    rr(px - w / 2, by, w, h, 14 * z, vgrad(by, by + h, cols[i][0], cols[i][1]), '#fff', Math.max(1, 4 * z));
+    x.fillStyle = '#fff'; x.beginPath(); x.arc(px - w / 2 + 16 * z, by + 16 * z, 12 * z, 0, 7); x.fill();
+    x.font = `bold ${Math.max(8, 15 * z)}px system-ui, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.fillStyle = cols[i][1]; x.fillText(L[i], px - w / 2 + 16 * z, by + 17 * z);
+    fitText(gate.opts[i], px, by + h * 0.56, w * 0.86, Math.max(10, 44 * z), i === 2 ? '#3e2723' : '#fff');
+  }
+}
+function drawPlayer(px, gy, jh, sl) {
+  const I = im('player'), k = 0.9, air = jh > 0, ph = air ? 0 : runPh;
+  shadow(px, gy, 30 * (1 - Math.min(jh, 140) / 280));
+  x.save(); x.translate(px, gy - jh);
+  if (sl > 0) x.scale(k * 1.25, k * 0.55); else { x.scale(k, k); x.rotate((lane - tl) * 0.2); }
+  if (I) { x.drawImage(I, -55, -115, 110, 115); x.restore(); return; }
+  const bob = air ? 0 : -Math.abs(Math.sin(ph)) * 6;
+  x.lineCap = 'round'; x.lineJoin = 'round';
+  const seg = (x0, y0, x1, y1, w, col) => { x.strokeStyle = col; x.lineWidth = w; x.beginPath(); x.moveTo(x0, y0); x.lineTo(x1, y1); x.stroke(); };
+  // legs: knees bend and the foot kicks up as each leg swings through
+  [-1, 1].forEach(sd => {
+    const p = ph + (sd < 0 ? 0 : Math.PI), lift = air ? (sd < 0 ? 20 : 4) : Math.max(0, Math.sin(p)) * 28;
+    const hx = sd * 8, hy = -42 + bob, fx = sd * 9, fy = -4 - lift;
+    const kx = sd * (13 + lift * 0.15), ky = (hy + fy) / 2 - lift * 0.25;
+    seg(hx, hy, kx, ky, 14, '#37474f');
+    seg(kx, ky, fx, fy, 11, '#f0b97a');
+    x.fillStyle = '#fafafa'; x.beginPath(); x.ellipse(fx, fy + 2, 9, 5 + lift * 0.08, 0, 0, 7); x.fill();
+    x.fillStyle = '#e53935'; x.fillRect(fx - 8, fy + 3, 16, 2);
+  });
+  // upper body sways with every stride
+  x.save(); x.translate(0, -42 + bob); x.rotate(air ? 0 : Math.sin(ph) * 0.07); x.translate(0, 42 - bob);
+  [-1, 1].forEach(sd => {
+    const sn = air ? (sd < 0 ? -1 : 1) : Math.sin(ph + (sd < 0 ? Math.PI : 0));
+    const sx = sd * 20, sy = -78 + bob, ex = sd * 29, ey = -66 + bob + sn * 5, ax = sd * 25, ay = -50 + bob - sn * 16;
+    seg(sx, sy, ex, ey, 10, '#e53935');
+    seg(ex, ey, ax, ay, 8, '#f0b97a');
+    x.fillStyle = '#f0b97a'; x.beginPath(); x.arc(ax, ay, 5, 0, 7); x.fill();
+  });
+  rr(-17, -84 + bob, 34, 46, 10, '#e53935');
+  rr(-14, -79 + bob, 28, 36, 8, '#1e88e5', '#0d47a1', 2);
+  x.fillStyle = '#ffca28'; x.fillRect(-9, -62 + bob, 18, 7);
+  const hb = air ? 0 : Math.sin(ph * 2) * 1.5;
+  x.fillStyle = '#2b1b17'; x.beginPath(); x.arc(0, -97 + bob + hb, 15, 0, 7); x.fill();
+  x.fillStyle = '#d32f2f'; x.beginPath(); x.arc(0, -99 + bob + hb, 15.5, Math.PI, 0); x.fill(); x.fillRect(-15.5, -100 + bob + hb, 31, 4);
+  x.restore(); x.restore();
+}
+function drawEntities() {
+  const sorted = [...items].sort((a, b) => a.z - b.z);
+  sorted.filter(i => i.z <= 0.88).forEach(drawItem);
+  if (gate) drawGate();
+  const pz = 0.88, ppx = PX(tl - 1, pz), pgy = PY(pz);
+  drawPlayer(ppx, pgy, jump, slide);
+  if (shield) {
+    const cy = pgy - jump - 55, g = x.createRadialGradient(ppx, cy, 20, ppx, cy, 66);
+    g.addColorStop(0, 'rgba(0,229,255,.05)'); g.addColorStop(1, 'rgba(0,229,255,.45)');
+    x.fillStyle = g; x.beginPath(); x.arc(ppx, cy, 66, 0, 7); x.fill();
+    x.strokeStyle = 'rgba(255,255,255,.8)'; x.lineWidth = 3; x.stroke();
+  }
+  sorted.filter(i => i.z > 0.88).forEach(drawItem);
+}
+
+// ---------- HUD + menus ----------
+function drawButton(b) {
+  const top = b.go ? ['#66bb6a', '#2e7d32'] : b.sel ? ['#ffe082', '#ffa000'] : ['#5c6bc0', '#303f9f'];
+  rr(b.x, b.y + 5, b.w, b.h, 16, 'rgba(0,0,0,.45)');
+  rr(b.x, b.y, b.w, b.h, 16, vgrad(b.y, b.y + b.h, top[0], top[1]), b.sel ? '#fff' : 'rgba(255,255,255,.55)', 3);
+  text(b.label, b.x + b.w / 2, b.y + b.h / 2, b.go ? 34 : 23, '#fff');
+}
+function drawHUD() {
+  if (st === 'play' && speed > 0.38) {
+    x.strokeStyle = `rgba(255,255,255,${Math.min(.35, (speed - .38) * 1.2)})`; x.lineWidth = 2;
+    for (let i = 0; i < 10; i++) {
+      const z = BZ((gt * 2.2 + i * 0.37) % 1), b = (i % 2 ? 1 : -1) * (1.9 + (i % 5) * 0.25);
+      x.beginPath(); x.moveTo(PX(b, z), PY(z)); x.lineTo(PX(b, z * 1.12), PY(z * 1.12)); x.stroke();
+    }
+  }
+  const vg = x.createRadialGradient(W / 2, H / 2, H * .35, W / 2, H / 2, H * .75);
+  vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.3)');
+  x.fillStyle = vg; x.fillRect(0, 0, W, H);
+  if (flash > 0) { x.fillStyle = `rgba(255,30,30,${Math.min(.5, flash * 1.6)})`; x.fillRect(0, 0, W, H); }
+  if (st === 'play') {
+    rr(12, 10, 130, 42, 21, 'rgba(0,0,0,.45)', 'rgba(255,255,255,.35)');
+    text('❤️'.repeat(Math.max(0, lives)) + '🖤'.repeat(Math.max(0, 3 - lives)), 77, 32, 24);
+    rr(W - 172, 10, 160, 42, 21, 'rgba(0,0,0,.45)', '#ffd54f');
+    text('⭐ ' + Math.floor(score), W - 92, 32, 24, '#ffe082');
+    const q = gate || pendingQ;
+    if (q) {
+      rr(18, 62, W - 36, 92, 18, vgrad(62, 154, 'rgba(25,40,100,.92)', 'rgba(10,20,60,.92)'), '#ffd54f', 3);
+      text(gate ? 'QUESTION' : 'GET READY!', W / 2, 78, 14, gate ? '#90caf9' : '#ff8a65');
+      fitText(q.q, W / 2, 120, W - 70, 34, '#fff');
+    }
+    if (msgT > 0) fitText(msg, W / 2, 205, W - 40, 40, msgOk ? '#69f0ae' : '#ff8a80');
+    if (shield) emoji('🛡️', 30, H - 48, 30);
+    if (slowT > 0) text('⏳ ' + Math.ceil(slowT), 62, H - 48, 22, '#80deea', 'left');
+    const cn = CATS.find(v => v[0] === sel.cat)[1], ln = LVLS.find(v => v[0] === sel.lvl)[1];
+    text(cn + ' • ' + ln, W / 2, H - 18, 18, 'rgba(255,255,255,.9)');
+  } else {
+    x.fillStyle = vgrad(0, H, 'rgba(10,20,60,.82)', 'rgba(0,0,0,.9)'); x.fillRect(0, 0, W, H);
+    if (st === 'menu') {
+      const bounce = Math.sin(gt * 3) * 4;
+      text('QUIZ', W / 2, 60 + bounce, 64, '#ffd54f');
+      text('RUNNER', W / 2, 120 + bounce, 46, '#fff');
+      text('Subject', W / 2, 185, 24, '#ffd54f');
+      text('Level', W / 2, 365, 24, '#ffd54f');
+      text('Best score: ' + best, W / 2, 665, 26);
+      text('Run into the lane with the right answer!', W / 2, 705, 20, '#ccc');
+      text('← → move    ↑ jump    ↓ slide', W / 2, 738, 20, '#ccc');
+      text('🛡️ shield    ⏳ slow-mo    (M = mute)', W / 2, 768, 18, '#ccc');
+    } else {
+      text('Game Over', W / 2, 60, 50);
+      text('Score ' + Math.floor(score) + '   (Best ' + best + ')', W / 2, 120, 30, '#ffd54f');
+      text('Answered right: ' + stats.ok + ' / ' + stats.n, W / 2, 165, 24);
+      text('📝 Review', W / 2, 225, 26, '#ffd54f');
+      if (!missed.length) text(stats.n ? 'Perfect! No missed questions 🎉' : 'No questions answered yet', W / 2, 300, 22, '#69f0ae');
+      missed.slice(0, 4).forEach((m, i) => {
+        const y = 270 + i * 90, cut = t => t.length > 34 ? t.slice(0, 33) + '…' : t;
+        text(cut(m.q), W / 2, y, 20, '#fff');
+        text('✔ ' + cut(m.ans), W / 2, y + 28, 24, '#69f0ae');
+        text('you chose: ' + cut(m.pick), W / 2, y + 54, 16, '#ff8a80');
+      });
+      if (missed.length > 4) text('+' + (missed.length - 4) + ' more', W / 2, 622, 18, '#ccc');
+    }
+    buttons().forEach(drawButton);
+  }
+  text(muted ? '🔇' : '🔊', W - 38, H - 38, 30);
+}
+function draw() {
+  x.save();
+  if (shake > 0) x.translate((Math.random() - .5) * 10, (Math.random() - .5) * 10);
+  drawWorld(); drawEntities();
+  x.restore();
+  drawParts(); drawHUD();
+}
+
+let last = performance.now();
+(function loop(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  update(dt); draw(); requestAnimationFrame(loop);
+})(last);
+</script>
+</body>
+</html>

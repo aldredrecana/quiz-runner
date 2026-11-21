@@ -1,0 +1,2032 @@
+[
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'dog'?",
+    "answer": "aso",
+    "wrong": [
+      "pusa",
+      "ibon"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'red'?",
+    "answer": "pula",
+    "wrong": [
+      "asul",
+      "dilaw"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "'Tubig' in English?",
+    "answer": "water",
+    "wrong": [
+      "fire",
+      "wind"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'house'?",
+    "answer": "bahay",
+    "wrong": [
+      "kotse",
+      "puno"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'cat'?",
+    "answer": "pusa",
+    "wrong": [
+      "aso",
+      "ibon"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'bird'?",
+    "answer": "ibon",
+    "wrong": [
+      "isda",
+      "baka"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'fish'?",
+    "answer": "isda",
+    "wrong": [
+      "pusa",
+      "kabayo"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'milk'?",
+    "answer": "gatas",
+    "wrong": [
+      "tubig",
+      "kape"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'egg'?",
+    "answer": "itlog",
+    "wrong": [
+      "gatas",
+      "tinapay"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'bread'?",
+    "answer": "tinapay",
+    "wrong": [
+      "itlog",
+      "prutas"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'book'?",
+    "answer": "aklat",
+    "wrong": [
+      "lapis",
+      "upuan"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'chair'?",
+    "answer": "upuan",
+    "wrong": [
+      "mesa",
+      "pinto"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'door'?",
+    "answer": "pinto",
+    "wrong": [
+      "bintana",
+      "bubong"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'sun'?",
+    "answer": "araw",
+    "wrong": [
+      "buwan",
+      "bituin"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'moon'?",
+    "answer": "buwan",
+    "wrong": [
+      "araw",
+      "ulap"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'star'?",
+    "answer": "bituin",
+    "wrong": [
+      "bulaklak",
+      "ulap"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'blue'?",
+    "answer": "asul",
+    "wrong": [
+      "pula",
+      "berde"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'one'?",
+    "answer": "isa",
+    "wrong": [
+      "dalawa",
+      "tatlo"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'mother'?",
+    "answer": "nanay",
+    "wrong": [
+      "tatay",
+      "lola"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 1,
+    "q": "Filipino for 'father'?",
+    "answer": "tatay",
+    "wrong": [
+      "nanay",
+      "lolo"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'friend'?",
+    "answer": "kaibigan",
+    "wrong": [
+      "kapatid",
+      "kapitbahay"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Salamat' means?",
+    "answer": "thank you",
+    "wrong": [
+      "goodbye",
+      "sorry"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Opposite of 'malaki'?",
+    "answer": "maliit",
+    "wrong": [
+      "mataba",
+      "mabigat"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'school'?",
+    "answer": "paaralan",
+    "wrong": [
+      "simbahan",
+      "palengke"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Magandang umaga' means?",
+    "answer": "good morning",
+    "wrong": [
+      "good night",
+      "good afternoon"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Magandang gabi' means?",
+    "answer": "good evening",
+    "wrong": [
+      "good morning",
+      "thank you"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Paalam' means?",
+    "answer": "goodbye",
+    "wrong": [
+      "hello",
+      "please"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Pakiusap' means?",
+    "answer": "please",
+    "wrong": [
+      "thank you",
+      "sorry"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Pasensya na' means?",
+    "answer": "sorry",
+    "wrong": [
+      "thank you",
+      "goodbye"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Kain' means?",
+    "answer": "eat",
+    "wrong": [
+      "sleep",
+      "run"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Tulog' means?",
+    "answer": "sleep",
+    "wrong": [
+      "eat",
+      "walk"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Takbo' means?",
+    "answer": "run",
+    "wrong": [
+      "jump",
+      "sit"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Opposite of 'mataas'?",
+    "answer": "mababa",
+    "wrong": [
+      "malaki",
+      "mahaba"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Opposite of 'mabilis'?",
+    "answer": "mabagal",
+    "wrong": [
+      "malakas",
+      "mataba"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'teacher'?",
+    "answer": "guro",
+    "wrong": [
+      "doktor",
+      "pulis"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'market'?",
+    "answer": "palengke",
+    "wrong": [
+      "simbahan",
+      "ospital"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'rain'?",
+    "answer": "ulan",
+    "wrong": [
+      "hangin",
+      "araw"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "Filipino for 'flower'?",
+    "answer": "bulaklak",
+    "wrong": [
+      "dahon",
+      "puno"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Walo' is what number?",
+    "answer": "8",
+    "wrong": [
+      "6",
+      "9"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 2,
+    "q": "'Lima' is what number?",
+    "answer": "5",
+    "wrong": [
+      "3",
+      "7"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Bayanihan' means?",
+    "answer": "helping each other",
+    "wrong": [
+      "dancing",
+      "fishing"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "Filipino for 'rainbow'?",
+    "answer": "bahaghari",
+    "wrong": [
+      "bulalakaw",
+      "buwan"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "Opposite of 'masipag'?",
+    "answer": "tamad",
+    "wrong": [
+      "matalino",
+      "mabait"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "National hero of the PH?",
+    "answer": "Jose Rizal",
+    "wrong": [
+      "Ferdinand Magellan",
+      "Juan Luna"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Bahay kubo' is a?",
+    "answer": "nipa hut",
+    "wrong": [
+      "castle",
+      "jeepney"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Kapitbahay' means?",
+    "answer": "neighbor",
+    "wrong": [
+      "relative",
+      "stranger"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Pasalubong' is?",
+    "answer": "a gift from a trip",
+    "wrong": [
+      "a rice dish",
+      "a dance"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Mano po' shows?",
+    "answer": "respect",
+    "wrong": [
+      "anger",
+      "sadness"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Matulungin' means?",
+    "answer": "helpful",
+    "wrong": [
+      "lazy",
+      "noisy"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Magalang' means?",
+    "answer": "polite",
+    "wrong": [
+      "rude",
+      "sleepy"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Mapagmahal' means?",
+    "answer": "loving",
+    "wrong": [
+      "angry",
+      "hungry"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "Opposite of 'malinis'?",
+    "answer": "marumi",
+    "wrong": [
+      "maganda",
+      "masaya"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "Opposite of 'masaya'?",
+    "answer": "malungkot",
+    "wrong": [
+      "masarap",
+      "mabango"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "Opposite of 'matapang'?",
+    "answer": "duwag",
+    "wrong": [
+      "matalino",
+      "mabilis"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Bayani' means?",
+    "answer": "hero",
+    "wrong": [
+      "farmer",
+      "teacher"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Kalayaan' means?",
+    "answer": "freedom",
+    "wrong": [
+      "friendship",
+      "family"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Kasaysayan' means?",
+    "answer": "history",
+    "wrong": [
+      "geography",
+      "music"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Pagkakaisa' means?",
+    "answer": "unity",
+    "wrong": [
+      "argument",
+      "journey"
+    ]
+  },
+  {
+    "cat": "filipino",
+    "level": 3,
+    "q": "'Wika' means?",
+    "answer": "language",
+    "wrong": [
+      "water",
+      "road"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Opposite of 'hot'?",
+    "answer": "cold",
+    "wrong": [
+      "warm",
+      "big"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which is a color?",
+    "answer": "blue",
+    "wrong": [
+      "dog",
+      "run"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Plural of 'cat'?",
+    "answer": "cats",
+    "wrong": [
+      "cates",
+      "catt"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which word starts with B?",
+    "answer": "ball",
+    "wrong": [
+      "apple",
+      "cat"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which is an animal?",
+    "answer": "cat",
+    "wrong": [
+      "chair",
+      "cup"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which is a fruit?",
+    "answer": "banana",
+    "wrong": [
+      "carrot",
+      "spoon"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Opposite of 'up'?",
+    "answer": "down",
+    "wrong": [
+      "over",
+      "high"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Opposite of 'big'?",
+    "answer": "small",
+    "wrong": [
+      "tall",
+      "long"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "What sound does a cow make?",
+    "answer": "moo",
+    "wrong": [
+      "meow",
+      "quack"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which word rhymes with 'cat'?",
+    "answer": "hat",
+    "wrong": [
+      "dog",
+      "cup"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "How many letters in 'dog'?",
+    "answer": "3",
+    "wrong": [
+      "2",
+      "4"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which is a shape?",
+    "answer": "circle",
+    "wrong": [
+      "table",
+      "pencil"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Opposite of 'day'?",
+    "answer": "night",
+    "wrong": [
+      "noon",
+      "sun"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which letter comes after 'B'?",
+    "answer": "C",
+    "wrong": [
+      "A",
+      "D"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which word is an action?",
+    "answer": "jump",
+    "wrong": [
+      "blue",
+      "happy"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which is a day of the week?",
+    "answer": "Monday",
+    "wrong": [
+      "January",
+      "Summer"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 1,
+    "q": "Which month comes after January?",
+    "answer": "February",
+    "wrong": [
+      "March",
+      "December"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Plural of 'child'?",
+    "answer": "children",
+    "wrong": [
+      "childs",
+      "childes"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Opposite of 'happy'?",
+    "answer": "sad",
+    "wrong": [
+      "glad",
+      "fast"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Past tense of 'run'?",
+    "answer": "ran",
+    "wrong": [
+      "runned",
+      "running"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Which is a noun?",
+    "answer": "table",
+    "wrong": [
+      "quickly",
+      "jump"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Plural of 'box'?",
+    "answer": "boxes",
+    "wrong": [
+      "boxs",
+      "boxen"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Plural of 'mouse'?",
+    "answer": "mice",
+    "wrong": [
+      "mouses",
+      "mices"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Plural of 'foot'?",
+    "answer": "feet",
+    "wrong": [
+      "foots",
+      "feets"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Past tense of 'eat'?",
+    "answer": "ate",
+    "wrong": [
+      "eated",
+      "eats"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Past tense of 'see'?",
+    "answer": "saw",
+    "wrong": [
+      "seed",
+      "sees"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Past tense of 'write'?",
+    "answer": "wrote",
+    "wrong": [
+      "writed",
+      "writes"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Opposite of 'fast'?",
+    "answer": "slow",
+    "wrong": [
+      "quick",
+      "late"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Opposite of 'early'?",
+    "answer": "late",
+    "wrong": [
+      "soon",
+      "first"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Which is a verb?",
+    "answer": "swim",
+    "wrong": [
+      "happy",
+      "table"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Which is an adjective?",
+    "answer": "tall",
+    "wrong": [
+      "run",
+      "book"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "A baby dog is a?",
+    "answer": "puppy",
+    "wrong": [
+      "kitten",
+      "cub"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Synonym of 'happy'?",
+    "answer": "glad",
+    "wrong": [
+      "angry",
+      "tired"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Which sentence is correct?",
+    "answer": "She is my friend.",
+    "wrong": [
+      "She are my friend.",
+      "She am my friend."
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "Which is spelled right?",
+    "answer": "because",
+    "wrong": [
+      "becuase",
+      "becouse"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 2,
+    "q": "'The book is over ___.'",
+    "answer": "there",
+    "wrong": [
+      "their",
+      "they're"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Synonym of 'big'?",
+    "answer": "large",
+    "wrong": [
+      "tiny",
+      "thin"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is an adjective?",
+    "answer": "beautiful",
+    "wrong": [
+      "slowly",
+      "teacher"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Past tense of 'go'?",
+    "answer": "went",
+    "wrong": [
+      "goed",
+      "goes"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Antonym of 'ancient'?",
+    "answer": "modern",
+    "wrong": [
+      "old",
+      "historic"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Synonym of 'begin'?",
+    "answer": "start",
+    "wrong": [
+      "finish",
+      "stop"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Antonym of 'brave'?",
+    "answer": "cowardly",
+    "wrong": [
+      "bold",
+      "strong"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is a noun?",
+    "answer": "honesty",
+    "wrong": [
+      "quickly",
+      "jumped"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is an adverb?",
+    "answer": "quickly",
+    "wrong": [
+      "quick",
+      "quickness"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "A group of fish is a?",
+    "answer": "school",
+    "wrong": [
+      "herd",
+      "flock"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "'I have ___ the glass.' (break)",
+    "answer": "broken",
+    "wrong": [
+      "broke",
+      "breaked"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "'She ___ to school every day.'",
+    "answer": "goes",
+    "wrong": [
+      "go",
+      "going"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is a compound word?",
+    "answer": "sunflower",
+    "wrong": [
+      "beautiful",
+      "happily"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is a conjunction?",
+    "answer": "because",
+    "wrong": [
+      "under",
+      "quickly"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which mark ends a question?",
+    "answer": "?",
+    "wrong": [
+      ".",
+      "!"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Plural of 'city'?",
+    "answer": "cities",
+    "wrong": [
+      "citys",
+      "citis"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which means 'very big'?",
+    "answer": "enormous",
+    "wrong": [
+      "tiny",
+      "narrow"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Antonym of 'expand'?",
+    "answer": "shrink",
+    "wrong": [
+      "grow",
+      "stretch"
+    ]
+  },
+  {
+    "cat": "english",
+    "level": 3,
+    "q": "Which is a simile?",
+    "answer": "as quick as a cheetah",
+    "wrong": [
+      "The cheetah ran",
+      "a cheetah's speed"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which is a mammal?",
+    "answer": "dog",
+    "wrong": [
+      "frog",
+      "shark"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "The sky is usually?",
+    "answer": "blue",
+    "wrong": [
+      "green",
+      "red"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "The planet we live on?",
+    "answer": "Earth",
+    "wrong": [
+      "Mars",
+      "Moon"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "How many legs does a dog have?",
+    "answer": "4",
+    "wrong": [
+      "2",
+      "6"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "How many eyes do you have?",
+    "answer": "2",
+    "wrong": [
+      "1",
+      "3"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "What do fish live in?",
+    "answer": "water",
+    "wrong": [
+      "trees",
+      "sand"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which is a plant?",
+    "answer": "tree",
+    "wrong": [
+      "rock",
+      "cloud"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "We see with our?",
+    "answer": "eyes",
+    "wrong": [
+      "ears",
+      "nose"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "We hear with our?",
+    "answer": "ears",
+    "wrong": [
+      "eyes",
+      "hands"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which is hot?",
+    "answer": "fire",
+    "wrong": [
+      "ice",
+      "snow"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "What do cows give us?",
+    "answer": "milk",
+    "wrong": [
+      "honey",
+      "eggs"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "The sun gives us?",
+    "answer": "light",
+    "wrong": [
+      "snow",
+      "sound"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which animal can fly?",
+    "answer": "bird",
+    "wrong": [
+      "fish",
+      "cow"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which is a kind of weather?",
+    "answer": "rainy",
+    "wrong": [
+      "round",
+      "loud"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "How many days in a week?",
+    "answer": "7",
+    "wrong": [
+      "5",
+      "10"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "What color is a ripe banana?",
+    "answer": "yellow",
+    "wrong": [
+      "blue",
+      "purple"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 1,
+    "q": "Which one is alive?",
+    "answer": "dog",
+    "wrong": [
+      "rock",
+      "chair"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Plants need sunlight to make?",
+    "answer": "food",
+    "wrong": [
+      "noise",
+      "plastic"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Water freezes into?",
+    "answer": "ice",
+    "wrong": [
+      "steam",
+      "sand"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "How many legs does a spider have?",
+    "answer": "8",
+    "wrong": [
+      "6",
+      "4"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "The largest planet?",
+    "answer": "Jupiter",
+    "wrong": [
+      "Earth",
+      "Venus"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which planet is closest to the Sun?",
+    "answer": "Mercury",
+    "wrong": [
+      "Earth",
+      "Neptune"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "What do bees make?",
+    "answer": "honey",
+    "wrong": [
+      "milk",
+      "silk"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which plant part takes in water?",
+    "answer": "roots",
+    "wrong": [
+      "leaves",
+      "flower"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "What is frozen water called?",
+    "answer": "ice",
+    "wrong": [
+      "steam",
+      "fog"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "The Moon orbits the?",
+    "answer": "Earth",
+    "wrong": [
+      "Sun",
+      "Mars"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which is a reptile?",
+    "answer": "snake",
+    "wrong": [
+      "frog",
+      "whale"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which is an insect?",
+    "answer": "ant",
+    "wrong": [
+      "spider",
+      "snail"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which animal lays eggs?",
+    "answer": "chicken",
+    "wrong": [
+      "cow",
+      "dog"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which sense uses the tongue?",
+    "answer": "taste",
+    "wrong": [
+      "smell",
+      "sight"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Plants give off which gas?",
+    "answer": "oxygen",
+    "wrong": [
+      "helium",
+      "smoke"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "How many planets in our solar system?",
+    "answer": "8",
+    "wrong": [
+      "9",
+      "7"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Magnets attract?",
+    "answer": "iron",
+    "wrong": [
+      "paper",
+      "wood"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 2,
+    "q": "Which is a source of light?",
+    "answer": "the Sun",
+    "wrong": [
+      "a rock",
+      "a book"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Gas we need to breathe?",
+    "answer": "oxygen",
+    "wrong": [
+      "hydrogen",
+      "helium"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Center of our solar system?",
+    "answer": "the Sun",
+    "wrong": [
+      "the Moon",
+      "Mars"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "How plants make food?",
+    "answer": "photosynthesis",
+    "wrong": [
+      "evaporation",
+      "digestion"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Boiling point of water (°C)?",
+    "answer": "100",
+    "wrong": [
+      "50",
+      "200"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "The force that pulls things down?",
+    "answer": "gravity",
+    "wrong": [
+      "friction",
+      "magnetism"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "The organ that pumps blood?",
+    "answer": "heart",
+    "wrong": [
+      "lungs",
+      "stomach"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Animals that eat only plants?",
+    "answer": "herbivores",
+    "wrong": [
+      "carnivores",
+      "omnivores"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Water turning into vapor is?",
+    "answer": "evaporation",
+    "wrong": [
+      "condensation",
+      "freezing"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "A planet's path around the Sun?",
+    "answer": "orbit",
+    "wrong": [
+      "rotation",
+      "eclipse"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Which is renewable energy?",
+    "answer": "solar",
+    "wrong": [
+      "coal",
+      "oil"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "H2O is the formula for?",
+    "answer": "water",
+    "wrong": [
+      "salt",
+      "oxygen"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "The smallest unit of life?",
+    "answer": "cell",
+    "wrong": [
+      "atom",
+      "organ"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Which planet is famous for rings?",
+    "answer": "Saturn",
+    "wrong": [
+      "Mars",
+      "Venus"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "What causes day and night?",
+    "answer": "Earth's rotation",
+    "wrong": [
+      "the Moon",
+      "clouds"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Which layer blocks UV rays?",
+    "answer": "ozone",
+    "wrong": [
+      "troposphere",
+      "crust"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Animals with backbones are?",
+    "answer": "vertebrates",
+    "wrong": [
+      "invertebrates",
+      "fungi"
+    ]
+  },
+  {
+    "cat": "science",
+    "level": 3,
+    "q": "Plants use sunlight, water and?",
+    "answer": "carbon dioxide",
+    "wrong": [
+      "oxygen",
+      "nitrogen"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national bird?",
+    "answer": "Philippine Eagle",
+    "wrong": [
+      "Pigeon",
+      "Crow"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national flower?",
+    "answer": "Sampaguita",
+    "wrong": [
+      "Rose",
+      "Sunflower"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national tree?",
+    "answer": "Narra",
+    "wrong": [
+      "Pine",
+      "Coconut"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national animal?",
+    "answer": "Carabao",
+    "wrong": [
+      "Dog",
+      "Horse"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national hero?",
+    "answer": "Jose Rizal",
+    "wrong": [
+      "Ferdinand Magellan",
+      "Juan Luna"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our capital city?",
+    "answer": "Manila",
+    "wrong": [
+      "Cebu",
+      "Davao"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our money is the?",
+    "answer": "Peso",
+    "wrong": [
+      "Dollar",
+      "Yen"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Famous PH public vehicle?",
+    "answer": "Jeepney",
+    "wrong": [
+      "Gondola",
+      "Tram"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national language?",
+    "answer": "Filipino",
+    "wrong": [
+      "Spanish",
+      "Japanese"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Which island group is in the north?",
+    "answer": "Luzon",
+    "wrong": [
+      "Mindanao",
+      "Visayas"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 1,
+    "q": "Our national fruit?",
+    "answer": "Mango",
+    "wrong": [
+      "Apple",
+      "Grapes"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Largest island in the PH?",
+    "answer": "Luzon",
+    "wrong": [
+      "Cebu",
+      "Palawan"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Southern island group?",
+    "answer": "Mindanao",
+    "wrong": [
+      "Luzon",
+      "Visayas"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Chocolate Hills are in?",
+    "answer": "Bohol",
+    "wrong": [
+      "Palawan",
+      "Batanes"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Mayon Volcano is in?",
+    "answer": "Albay",
+    "wrong": [
+      "Cebu",
+      "Davao"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Banaue Rice Terraces are in?",
+    "answer": "Ifugao",
+    "wrong": [
+      "Laguna",
+      "Batangas"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Taal Volcano is in?",
+    "answer": "Batangas",
+    "wrong": [
+      "Bohol",
+      "Cebu"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Rizal Park is in?",
+    "answer": "Manila",
+    "wrong": [
+      "Cebu",
+      "Baguio"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Stars on our flag?",
+    "answer": "3",
+    "wrong": [
+      "8",
+      "5"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Main island groups of the PH?",
+    "answer": "3",
+    "wrong": [
+      "2",
+      "5"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Rays of the sun on our flag?",
+    "answer": "8",
+    "wrong": [
+      "3",
+      "12"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Independence Day is on?",
+    "answer": "June 12",
+    "wrong": [
+      "July 4",
+      "December 25"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "'Pandesal' is a?",
+    "answer": "bread",
+    "wrong": [
+      "drink",
+      "dance"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "'Sinigang' is a?",
+    "answer": "sour soup",
+    "wrong": [
+      "dessert",
+      "fried rice"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "Which is a Filipino dessert?",
+    "answer": "halo-halo",
+    "wrong": [
+      "adobo",
+      "sinigang"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 2,
+    "q": "The 'Summer Capital'?",
+    "answer": "Baguio",
+    "wrong": [
+      "Davao",
+      "Manila"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Who fought in the Battle of Mactan?",
+    "answer": "Lapu-Lapu",
+    "wrong": [
+      "Rizal",
+      "Bonifacio"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Founder of the Katipunan?",
+    "answer": "Andres Bonifacio",
+    "wrong": [
+      "Emilio Aguinaldo",
+      "Apolinario Mabini"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "First president of the PH?",
+    "answer": "Emilio Aguinaldo",
+    "wrong": [
+      "Manuel Quezon",
+      "Jose Rizal"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Rizal's first novel?",
+    "answer": "Noli Me Tangere",
+    "wrong": [
+      "El Filibusterismo",
+      "Florante at Laura"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Who wrote 'Florante at Laura'?",
+    "answer": "Francisco Balagtas",
+    "wrong": [
+      "Jose Rizal",
+      "Andres Bonifacio"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "How many islands in the PH?",
+    "answer": "7,641",
+    "wrong": [
+      "700",
+      "70,000"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Longest river in the PH?",
+    "answer": "Cagayan River",
+    "wrong": [
+      "Pasig River",
+      "Agno River"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Highest mountain in the PH?",
+    "answer": "Mount Apo",
+    "wrong": [
+      "Mount Mayon",
+      "Mount Pulag"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "The PH is in which continent?",
+    "answer": "Asia",
+    "wrong": [
+      "Africa",
+      "Europe"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Which ocean is east of the PH?",
+    "answer": "Pacific Ocean",
+    "wrong": [
+      "Atlantic Ocean",
+      "Indian Ocean"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "What do we celebrate on Dec 30?",
+    "answer": "Rizal Day",
+    "wrong": [
+      "Labor Day",
+      "Flag Day"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Who colonized the PH for 300+ years?",
+    "answer": "Spain",
+    "wrong": [
+      "Brazil",
+      "Egypt"
+    ]
+  },
+  {
+    "cat": "ph",
+    "level": 3,
+    "q": "Dance using bamboo poles?",
+    "answer": "Tinikling",
+    "wrong": [
+      "Cariñosa",
+      "Maglalatik"
+    ]
+  }
+]
